@@ -1,0 +1,21 @@
+# Sample broker reports — contain real account data, never commit
+*.xlsx
+*.xlsm
+
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+.venv/
+venv/
+env/
+
+# Streamlit
+.streamlit/secrets.toml
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
