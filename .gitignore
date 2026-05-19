@@ -2,6 +2,9 @@
 *.xlsx
 *.xlsm
 
+# Local reference / blueprint folders (not part of the shipped repo)
+Pending In Order/
+
 # Python
 __pycache__/
 *.py[cod]

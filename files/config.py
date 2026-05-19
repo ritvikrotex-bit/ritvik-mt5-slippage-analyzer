@@ -57,3 +57,34 @@ CONTRACT_SIZES = {
     "ETHUSD": 1,
 }
 DEFAULT_CONTRACT_SIZE = None  # None -> USD column shows as "unknown" rather than wrong
+
+
+# ===========================================================================
+# Phase 2 additions — pending order analysis.
+# Append-only. Constants above this line are immutable (LOGIC_LOCK.md §10).
+# ===========================================================================
+
+# Orders section header detection. Sits above the Deals section in MT5
+# reports: Open Time | Order | Symbol | Type | Volume | Price | S/L | T/P
+# | Time | State | Comment.
+ORDERS_REQUIRED_HEADER_TOKENS = {
+    "open time", "order", "symbol", "type", "volume",
+    "price", "s / l", "t / p", "time", "state",
+}
+ORDERS_MIN_HEADER_MATCHES = 6
+ORDERS_MUST_HAVE_TOKENS = {"state", "open time"}
+
+# Only "filled" orders correspond to executed deals worth slippage analysis.
+VALID_ORDER_STATE = "filled"
+
+# Pending order types we calculate slippage for. Market 'buy'/'sell' orders
+# from the Orders section are NOT included — those have no requested price
+# distinct from the market itself.
+PENDING_ORDER_TYPES = {
+    "buy limit",
+    "sell limit",
+    "buy stop",
+    "sell stop",
+    "buy stop limit",
+    "sell stop limit",
+}
